@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Jessica Marabella Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6B3FA0;
+      --purple-dark: #4A2870;
+      --purple-light: #EDE7F6;
+      --purple-mid: #9B6FCA;
+      --text: #1A1A2E;
+      --text-light: #555570;
+      --gray-bg: #F7F7FB;
+      --white: #FFFFFF;
+      --border: #E0D9F0;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--purple); }
+    .nav-links { display: flex; gap: 32px; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: var(--white); padding: 10px 22px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      color: var(--white); padding: 80px 40px 70px; text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 16px;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); max-width: 640px; margin: 0 auto 16px; line-height: 1.2; }
+    .hero-sub { font-family: 'Arial', sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.85); max-width: 500px; margin: 0 auto; }
+
+    /* MAIN LAYOUT */
+    .contact-section { padding: 72px 40px; background: var(--gray-bg); }
+    .contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+
+    /* LEFT COLUMN */
+    .contact-info .section-label {
+      font-family: 'Arial', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    .contact-info h2 { font-size: 1.6rem; margin-bottom: 14px; }
+    .contact-info p { font-family: 'Arial', sans-serif; color: var(--text-light); font-size: 0.95rem; line-height: 1.65; margin-bottom: 32px; }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px;
+    }
+    .contact-detail-icon {
+      width: 40px; height: 40px; background: var(--purple-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-detail-text h4 { font-family: 'Arial', sans-serif; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin-bottom: 2px; }
+    .contact-detail-text p { font-family: 'Arial', sans-serif; font-size: 0.92rem; color: var(--text); }
+    .contact-detail-text a { color: var(--purple); }
+
+    .what-to-expect { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-top: 28px; }
+    .what-to-expect h4 { font-family: 'Arial', sans-serif; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin-bottom: 12px; }
+    .expect-item { display: flex; gap: 10px; margin-bottom: 10px; font-family: 'Arial', sans-serif; font-size: 0.87rem; color: var(--text-light); }
+    .expect-item::before { content: '✓'; color: var(--purple); font-weight: 700; flex-shrink: 0; }
+
+    /* FORM */
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 36px; box-shadow: 0 2px 16px rgba(107,63,160,0.07); }
+    .form-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .form-card .form-sub { font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light); margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-family: 'Arial', sans-serif; font-size: 0.82rem;
+      font-weight: 700; color: var(--text); margin-bottom: 6px;
+    }
+    .form-group label .required { color: var(--purple); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 5px;
+      font-family: 'Arial', sans-serif; font-size: 0.92rem; color: var(--text);
+      background: var(--white); outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(107,63,160,0.1); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .form-note {
+      font-family: 'Arial', sans-serif; font-size: 0.78rem; color: var(--text-light);
+      margin-bottom: 20px; line-height: 1.5;
+    }
+    .form-note a { color: var(--purple); }
+
+    .btn-submit {
+      width: 100%; background: var(--purple); color: var(--white); border: none;
+      padding: 14px; border-radius: 5px; cursor: pointer;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--purple-dark); }
+
+    /* SUCCESS STATE */
+    .form-success {
+      display: none; text-align: center; padding: 32px 0;
+    }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+    .form-success h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .form-success p { font-family: 'Arial', sans-serif; color: var(--text-light); }
+
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 40px; font-family: 'Arial', sans-serif; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .contact-section { padding: 52px 20px; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">Jessica Marabella</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="selected-work.html">Selected Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Work With Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Get In Touch</div>
+    <h1>Let's Start a Conversation</h1>
+    <p class="hero-sub">Whether you have a defined project or are still exploring what you need, I'd love to hear from you.</p>
+  </section>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="contact-section">
+    <div class="contact-inner">
+
+      <!-- LEFT: Info -->
+      <div class="contact-info">
+        <div class="section-label">Contact</div>
+        <h2>Let's Talk About Your Project</h2>
+        <p>I take on a limited number of engagements at a time to ensure every client gets my full attention. If you're ready to explore working together, fill out the form or reach out directly.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <h4>Email</h4>
+            <p><a href="mailto:jess@clewisconsulting.co">jess@clewisconsulting.co</a></p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">⏱️</div>
+          <div class="contact-detail-text">
+            <h4>Response Time</h4>
+            <p>I respond to all inquiries within 1–2 business days.</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <h4>Location</h4>
+            <p>Available for remote engagements nationwide.</p>
+          </div>
+        </div>
+
+        <div class="what-to-expect">
+          <h4>What to Expect</h4>
+          <div class="expect-item">I'll respond within 1–2 business days</div>
+          <div class="expect-item">A brief intro call to understand your needs</div>
+          <div class="expect-item">A proposal tailored to your goals and timeline</div>
+          <div class="expect-item">Clear next steps, no pressure</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="form-card">
+        <h3>Send Me a Message</h3>
+        <p class="form-sub">Tell me a bit about what you're working on — I'll follow up to set up a conversation.</p>
+
+        <!--
+          DEVELOPER NOTE:
+          This form uses Formspree for email delivery.
+          To activate:
+          1. Create a free account at https://formspree.io
+          2. Create a new form in your Formspree dashboard
+          3. Replace YOUR_FORMSPREE_ID below with your actual form ID
+          The action URL should be: https://formspree.io/f/YOUR_FORMSPREE_ID
+        -->
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+          method="POST"
+          onsubmit="handleSubmit(event)"
+        >
+          <!-- Formspree will deliver replies to the email specified in your dashboard -->
+          <input type="hidden" name="_replyto" value="" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first_name">First Name <span class="required">*</span></label>
+              <input type="text" id="first_name" name="first_name" required placeholder="Jessica" />
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name <span class="required">*</span></label>
+              <input type="text" id="last_name" name="last_name" required placeholder="Smith" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="organization">Organization / Company</label>
+            <input type="text" id="organization" name="organization" placeholder="Your organization (optional)" />
+          </div>
+
+          <div class="form-group">
+            <label for="service_interest">Area of Interest <span class="required">*</span></label>
+            <select id="service_interest" name="service_interest" required>
+              <option value="" disabled selected>Select a service area…</option>
+              <option value="brand_messaging">Brand &amp; Messaging Strategy</option>
+              <option value="content_strategy">Content Strategy &amp; Creation</option>
+              <option value="public_relations">Public Relations</option>
+              <option value="executive_comms">Executive Communications</option>
+              <option value="not_sure">Not Sure Yet — Let's Talk</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell Me About Your Project <span class="required">*</span></label>
+            <textarea id="message" name="message" required placeholder="What are you working on? What's the challenge or goal? Any timeline or budget considerations are helpful to share, but not required."></textarea>
+          </div>
+
+          <div class="form-note">
+            By submitting this form, you agree to being contacted by Jessica Marabella Consulting regarding your inquiry. Your information will never be shared with third parties. Powered by <a href="https://formspree.io" target="_blank">Formspree</a>.
+          </div>
+
+          <button type="submit" class="btn-submit">Send Message →</button>
+        </form>
+
+        <!-- Success message (shown after submit) -->
+        <div class="form-success" id="form-success">
+          <span class="success-icon">🎉</span>
+          <h3>Message Received!</h3>
+          <p>Thank you for reaching out. I'll be in touch within 1–2 business days.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Jessica Marabella Consulting</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="selected-work.html">Selected Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Jessica Marabella Consulting. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    async function handleSubmit(event) {
+      event.preventDefault();
+      const form = document.getElementById('contact-form');
+      const successMsg = document.getElementById('form-success');
+      const btn = form.querySelector('.btn-submit');
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email jess@clewisconsulting.co directly.');
+        }
+      } catch (error) {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email jess@clewisconsulting.co directly.');
+      }
+    }
+  </script>
+
+</body>
+</html>

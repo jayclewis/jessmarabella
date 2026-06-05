@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Jessica Marabella Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6B3FA0;
+      --purple-dark: #4A2870;
+      --purple-light: #EDE7F6;
+      --purple-mid: #9B6FCA;
+      --text: #1A1A2E;
+      --text-light: #555570;
+      --gray-bg: #F7F7FB;
+      --white: #FFFFFF;
+      --border: #E0D9F0;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--purple); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 32px; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: var(--white); padding: 10px 22px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: 600; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--purple-dark); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      color: var(--white); padding: 80px 40px 70px; text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 16px;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.2; max-width: 700px; margin: 0 auto 16px; }
+    .hero-sub {
+      font-family: 'Arial', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.85);
+      max-width: 580px; margin: 0 auto 32px;
+    }
+    .btn-primary {
+      display: inline-block; background: var(--white); color: var(--purple);
+      padding: 13px 30px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 0.92rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+    section { padding: 72px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Arial', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); color: var(--text); margin-bottom: 12px; }
+    .section-desc { font-family: 'Arial', sans-serif; color: var(--text-light); font-size: 0.97rem; max-width: 600px; margin-bottom: 44px; }
+
+    /* FOCUS AREAS */
+    .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .focus-pill {
+      background: var(--purple-light); border-radius: 6px; padding: 16px 20px;
+      font-family: 'Arial', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--purple);
+      text-align: center;
+    }
+
+    /* SERVICE CARDS */
+    .service-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      margin-bottom: 32px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(107,63,160,0.06);
+    }
+    .service-card-header {
+      background: var(--purple); color: var(--white); padding: 28px 32px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .service-card-icon { font-size: 2rem; }
+    .service-card-header h3 { font-size: 1.25rem; margin: 0; }
+    .service-card-header p {
+      font-family: 'Arial', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.82);
+      margin-top: 4px;
+    }
+    .service-card-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .service-col { padding: 28px 24px; border-right: 1px solid var(--border); }
+    .service-col:last-child { border-right: none; }
+    .service-col-label {
+      font-family: 'Arial', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    .service-col h4 { font-size: 0.97rem; color: var(--text); margin-bottom: 8px; }
+    .service-col p { font-family: 'Arial', sans-serif; font-size: 0.87rem; color: var(--text-light); line-height: 1.55; }
+    .service-col ul { list-style: none; padding: 0; }
+    .service-col ul li {
+      font-family: 'Arial', sans-serif; font-size: 0.87rem; color: var(--text-light);
+      padding: 4px 0; padding-left: 14px; position: relative;
+    }
+    .service-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--purple-mid); font-size: 0.8rem; }
+
+    /* ENGAGEMENT MODELS */
+    .models-section { background: var(--gray-bg); }
+    .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .model-card {
+      background: var(--white); border-radius: 8px; padding: 28px 24px;
+      border: 1px solid var(--border);
+    }
+    .model-num {
+      width: 36px; height: 36px; background: var(--purple); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 14px;
+    }
+    .model-card h3 { font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    .model-card p { font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light); line-height: 1.55; }
+
+    /* PROCESS */
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 40px; }
+    .process-steps::before {
+      content: ''; position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 2px; background: var(--border); z-index: 0;
+    }
+    .process-step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+    .step-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--purple); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 1.1rem;
+      margin: 0 auto 14px;
+    }
+    .process-step h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 6px; }
+    .process-step p { font-family: 'Arial', sans-serif; font-size: 0.84rem; color: var(--text-light); }
+
+    /* CTA */
+    .cta-section { background: var(--purple-light); text-align: center; }
+    .cta-section h2 { margin-bottom: 12px; }
+    .cta-section p { font-family: 'Arial', sans-serif; color: var(--text-light); max-width: 520px; margin: 0 auto 28px; }
+    .btn-purple {
+      display: inline-block; background: var(--purple); color: var(--white);
+      padding: 13px 30px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.92rem;
+      transition: background 0.2s;
+    }
+    .btn-purple:hover { background: var(--purple-dark); }
+
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 40px; font-family: 'Arial', sans-serif; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 800px) {
+      .service-card-body { grid-template-columns: 1fr; }
+      .service-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-col:last-child { border-bottom: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-steps::before { display: none; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 52px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">Jessica Marabella</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="selected-work.html">Selected Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Work With Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">What I Offer</div>
+    <h1>Strategic Communications Services Tailored to Your Goals</h1>
+    <p class="hero-sub">Every engagement is built around your specific objectives — from focused strategy work to full-scale execution support.</p>
+    <a href="contact.html" class="btn-primary">Let's Talk About Your Project</a>
+  </section>
+
+  <!-- FOCUS AREAS -->
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Consulting Focus Areas</div>
+      <h2>Where I Work Best</h2>
+      <p class="section-desc">I bring strategic depth and hands-on capability across four core disciplines.</p>
+      <div class="focus-grid">
+        <div class="focus-pill">🎯 Brand &amp; Messaging Strategy</div>
+        <div class="focus-pill">✍️ Content Strategy &amp; Creation</div>
+        <div class="focus-pill">📡 Public Relations</div>
+        <div class="focus-pill">🎤 Executive Communications</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE CARDS -->
+  <section style="background: var(--gray-bg); padding-top: 0;">
+    <div class="section-inner">
+
+      <!-- Card 1: Brand & Messaging -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon">🗺️</div>
+          <div>
+            <h3>Brand &amp; Messaging Strategy</h3>
+            <p>Building the foundation for how your organization communicates — internally and externally.</p>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-col">
+            <div class="service-col-label">Strategic Context</div>
+            <p>Organizations often grow faster than their messaging does. When your story isn't clear or consistent, it creates friction with every audience — from customers to donors to team members.</p>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Engagement Scope</div>
+            <ul>
+              <li>Brand positioning &amp; competitive differentiation</li>
+              <li>Core messaging framework &amp; narrative architecture</li>
+              <li>Audience-specific messaging guides</li>
+              <li>Brand voice &amp; tone guidelines</li>
+              <li>Messaging workshops &amp; alignment sessions</li>
+            </ul>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Business Outcome</div>
+            <p>A shared language your whole organization can use. Clearer positioning that resonates with your audiences and distinguishes you from competitors. Messaging that scales.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Content -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon">✍️</div>
+          <div>
+            <h3>Content Strategy &amp; Creation</h3>
+            <p>From editorial planning to polished deliverables — content that builds authority and drives action.</p>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-col">
+            <div class="service-col-label">Strategic Context</div>
+            <p>Content is only valuable when it's strategic, consistent, and well-crafted. Most organizations produce content reactively — missing opportunities to build credibility over time.</p>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Engagement Scope</div>
+            <ul>
+              <li>Content strategy &amp; editorial planning</li>
+              <li>Thought leadership articles &amp; op-eds</li>
+              <li>Website copy &amp; landing pages</li>
+              <li>Email campaigns &amp; newsletters</li>
+              <li>Case studies &amp; impact reports</li>
+            </ul>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Business Outcome</div>
+            <p>A sustainable content engine that builds your reputation over time. High-quality assets that your team can use across channels. An audience that trusts your expertise.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: PR -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon">📡</div>
+          <div>
+            <h3>Public Relations</h3>
+            <p>Strategic media relations and earned coverage that puts you in front of the right audiences.</p>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-col">
+            <div class="service-col-label">Strategic Context</div>
+            <p>Earned media is one of the most credible and cost-effective ways to build visibility — but only when backed by a clear story and a strategic approach to outreach and timing.</p>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Engagement Scope</div>
+            <ul>
+              <li>PR strategy &amp; media planning</li>
+              <li>Press release writing &amp; distribution</li>
+              <li>Media pitching &amp; outreach</li>
+              <li>Book &amp; product launch campaigns</li>
+              <li>Award submissions &amp; nominations</li>
+            </ul>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Business Outcome</div>
+            <p>Meaningful coverage in publications your audiences read. A stronger public profile and increased credibility. Campaigns that generate sustained momentum, not just a single moment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Executive Comms -->
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon">🎤</div>
+          <div>
+            <h3>Executive Communications</h3>
+            <p>Helping leaders communicate with clarity, confidence, and authentic authority.</p>
+          </div>
+        </div>
+        <div class="service-card-body">
+          <div class="service-col">
+            <div class="service-col-label">Strategic Context</div>
+            <p>Leadership communication shapes culture, builds trust, and influences stakeholders at every level. When leaders communicate well, organizations move better.</p>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Engagement Scope</div>
+            <ul>
+              <li>Executive messaging &amp; positioning</li>
+              <li>Speeches, keynotes &amp; presentations</li>
+              <li>Op-eds &amp; bylined articles</li>
+              <li>Internal communications strategy</li>
+              <li>LinkedIn &amp; thought leadership content</li>
+            </ul>
+          </div>
+          <div class="service-col">
+            <div class="service-col-label">Business Outcome</div>
+            <p>Leaders who communicate with conviction and authenticity. Stronger relationships with employees, boards, customers, and media. A distinct executive voice that enhances organizational credibility.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT MODELS -->
+  <section class="models-section">
+    <div class="section-inner">
+      <div class="section-label">How We Work Together</div>
+      <h2>Engagement Models</h2>
+      <p class="section-desc">Flexible structures designed to fit your timeline, budget, and the nature of the work.</p>
+      <div class="models-grid">
+        <div class="model-card">
+          <div class="model-num">1</div>
+          <h3>Strategy Sprint</h3>
+          <p>A focused 2–4 week engagement designed to tackle one well-defined challenge — a messaging framework, a launch plan, or a content audit. Fast, high-impact, clearly scoped.</p>
+        </div>
+        <div class="model-card">
+          <div class="model-num">2</div>
+          <h3>Project Engagement</h3>
+          <p>A defined-scope project with clear deliverables and milestones — ideal for launches, campaigns, rebrands, or major content initiatives. Typically 6–12 weeks.</p>
+        </div>
+        <div class="model-card">
+          <div class="model-num">3</div>
+          <h3>Ongoing Advisory</h3>
+          <p>A retainer-based partnership where I serve as a trusted communications advisor — available for strategy, review, writing support, and guidance on an ongoing basis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <div class="section-inner">
+      <div class="section-label">My Approach</div>
+      <h2>The Engagement Process</h2>
+      <p class="section-desc">Every engagement follows a consistent process designed to deliver clarity, alignment, and results.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-circle">1</div>
+          <h4>Discovery</h4>
+          <p>I get to know your organization, goals, audiences, and challenges through structured conversations and research.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">2</div>
+          <h4>Strategy</h4>
+          <p>I develop a clear strategic framework and plan — with your input — before any execution begins.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">3</div>
+          <h4>Execution</h4>
+          <p>I deliver high-quality work on time, with regular check-ins to ensure alignment throughout.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">4</div>
+          <h4>Refinement</h4>
+          <p>We review, iterate, and ensure deliverables are fully usable — not just finished, but right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Ready to Get Started?</h2>
+      <p>Tell me about your project and let's find the right engagement model for your needs.</p>
+      <a href="contact.html" class="btn-purple">Start a Conversation</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Jessica Marabella Consulting</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="selected-work.html">Selected Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Jessica Marabella Consulting. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

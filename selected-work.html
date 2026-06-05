@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selected Work — Jessica Marabella Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6B3FA0;
+      --purple-dark: #4A2870;
+      --purple-light: #EDE7F6;
+      --purple-mid: #9B6FCA;
+      --lavender: #F3EEFF;
+      --text: #1A1A2E;
+      --text-light: #555570;
+      --gray-bg: #F7F7FB;
+      --white: #FFFFFF;
+      --border: #E0D9F0;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--purple); }
+    .nav-links { display: flex; gap: 32px; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: var(--white); padding: 10px 22px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--purple-dark); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      color: var(--white); padding: 80px 40px 70px; text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 16px;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); max-width: 680px; margin: 0 auto 16px; line-height: 1.2; }
+    .hero-sub { font-family: 'Arial', sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.85); max-width: 540px; margin: 0 auto; }
+
+    section { padding: 72px 40px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+
+    /* CASE STUDY CARD */
+    .case-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      margin-bottom: 36px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(107,63,160,0.07);
+    }
+    .case-header {
+      background: var(--purple-light); padding: 24px 32px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .case-tag {
+      font-family: 'Arial', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700;
+      background: var(--white); border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 20px; margin-bottom: 8px; display: inline-block;
+    }
+    .case-header h3 { font-size: 1.25rem; color: var(--text); line-height: 1.3; }
+    .case-header .case-org {
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light); margin-top: 4px;
+    }
+    .case-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .case-col { padding: 28px 28px; }
+    .case-col:first-child { border-right: 1px solid var(--border); }
+    .case-col-label {
+      font-family: 'Arial', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    .case-col p { font-family: 'Arial', sans-serif; font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+    .case-col ul { list-style: none; padding: 0; }
+    .case-col ul li {
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light);
+      padding: 5px 0 5px 16px; position: relative; line-height: 1.4;
+    }
+    .case-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--purple-mid); }
+    .case-result {
+      background: var(--lavender); padding: 20px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .case-result-label {
+      font-family: 'Arial', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 6px;
+    }
+    .case-result p { font-family: 'Arial', sans-serif; font-size: 0.9rem; color: var(--text); font-weight: 600; }
+
+    /* STAT STRIP */
+    .stat-strip {
+      background: var(--purple); color: var(--white);
+      padding: 20px 28px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 1.5rem; font-weight: 700; display: block; }
+    .stat-label { font-family: 'Arial', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* SAMPLES BANNER */
+    .samples-banner {
+      background: var(--purple); color: var(--white);
+      padding: 56px 40px; text-align: center;
+    }
+    .samples-banner h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .samples-banner p { font-family: 'Arial', sans-serif; color: rgba(255,255,255,0.85); max-width: 480px; margin: 0 auto 28px; }
+    .btn-white {
+      display: inline-block; background: var(--white); color: var(--purple);
+      padding: 13px 28px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 0.92rem;
+    }
+    .btn-white:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+    /* CTA */
+    .cta-section { background: var(--purple-light); text-align: center; }
+    .cta-section h2 { margin-bottom: 12px; font-size: 1.7rem; }
+    .cta-section p { font-family: 'Arial', sans-serif; color: var(--text-light); max-width: 500px; margin: 0 auto 28px; }
+    .btn-purple {
+      display: inline-block; background: var(--purple); color: var(--white);
+      padding: 13px 28px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.92rem;
+    }
+    .btn-purple:hover { background: var(--purple-dark); }
+
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 40px; font-family: 'Arial', sans-serif; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      section { padding: 52px 20px; }
+      .case-body { grid-template-columns: 1fr; }
+      .case-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-strip { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">Jessica Marabella</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="selected-work.html" class="active">Selected Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Work With Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Portfolio</div>
+    <h1>Selected Work</h1>
+    <p class="hero-sub">A sample of engagements where strategic communications drove measurable results.</p>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section style="background: var(--gray-bg);">
+    <div class="section-inner">
+
+      <!-- Case 1: PR / Book Launch -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag">Public Relations · Book Launch</span>
+            <h3>Award-Winning Book Launch Campaign</h3>
+            <div class="case-org">Independent Publishing Client</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Challenge</div>
+            <p>Launch a debut book to a crowded market with limited marketing budget, generating meaningful earned media coverage and building a loyal reader audience from near zero.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Approach &amp; Work</div>
+            <ul>
+              <li>Developed full PR strategy and media outreach plan</li>
+              <li>Secured coverage with the #1 publisher in the category</li>
+              <li>Planned and executed 5 bookstore launch events</li>
+              <li>Coordinated award submission strategy</li>
+              <li>Built newsletter audience of 173K subscribers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stat-strip">
+          <div class="stat-item">
+            <span class="stat-num">#1</span>
+            <span class="stat-label">Publisher Placement</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">173K</span>
+            <span class="stat-label">Subscribers Built</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Bookstore Launch Events</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Awards Won</span>
+          </div>
+        </div>
+        <div class="case-result">
+          <div class="case-result-label">Result</div>
+          <p>A landmark launch that established the author as a nationally recognized voice, earning top-publisher placement, six industry awards, and a 173K-subscriber platform built from scratch.</p>
+        </div>
+      </div>
+
+      <!-- Case 2: Brand Strategy -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag">Brand Strategy · Messaging</span>
+            <h3>Revenue-Driving Brand Messaging Overhaul</h3>
+            <div class="case-org">Professional Services Organization</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Challenge</div>
+            <p>A growing professional services firm lacked a cohesive brand narrative. Inconsistent messaging across channels was causing confusion with prospects and limiting conversion from awareness to engagement.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Approach &amp; Work</div>
+            <ul>
+              <li>Conducted audience research and competitive landscape analysis</li>
+              <li>Facilitated leadership alignment workshop on positioning</li>
+              <li>Developed core messaging framework and narrative architecture</li>
+              <li>Rewrote website copy and key sales materials</li>
+              <li>Created voice &amp; tone guide for the team</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <div class="case-result-label">Result</div>
+          <p>Revenue increased 5.5× in the 12 months following the messaging refresh, with leadership citing clearer positioning as a key driver of new client acquisition and retention.</p>
+        </div>
+      </div>
+
+      <!-- Case 3: Content Strategy -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag">Content Strategy · Growth</span>
+            <h3>Audience Growth Through Strategic Content</h3>
+            <div class="case-org">Mission-Driven Organization</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Challenge</div>
+            <p>An established nonprofit had a loyal but stagnant audience and content that wasn't converting new readers into active supporters or donors. Content felt reactive and inconsistent in quality.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Approach &amp; Work</div>
+            <ul>
+              <li>Audited existing content library and audience data</li>
+              <li>Developed editorial strategy aligned to organizational goals</li>
+              <li>Created 6-month content calendar with topic clusters</li>
+              <li>Wrote flagship content pieces and email sequences</li>
+              <li>Built internal workflow and quality guidelines</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <div class="case-result-label">Result</div>
+          <p>Audience size tripled (3×) over 9 months. Donor conversion from newsletter improved significantly, and the organization now has a sustainable, self-managed content operation.</p>
+        </div>
+      </div>
+
+      <!-- Case 4: Revenue Campaign -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <span class="case-tag">Campaign Strategy · Revenue</span>
+            <h3>$2.29M Revenue Generation Campaign</h3>
+            <div class="case-org">National Nonprofit</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Challenge</div>
+            <p>A national nonprofit needed to dramatically increase revenue from a flagship fundraising campaign while maintaining donor trust and organizational brand integrity.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Approach &amp; Work</div>
+            <ul>
+              <li>Developed multi-channel campaign strategy and messaging</li>
+              <li>Wrote all campaign copy — email, digital, direct mail</li>
+              <li>Coordinated messaging across internal stakeholders</li>
+              <li>Created donor stewardship communications</li>
+              <li>Built post-campaign impact reporting framework</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <div class="case-result-label">Result</div>
+          <p>The campaign generated $2.29M — a record result for the organization, with donor retention rates exceeding prior year benchmarks and significant new donor acquisition.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MORE SAMPLES BANNER -->
+  <div class="samples-banner">
+    <h2>More Samples Available Upon Request</h2>
+    <p>Writing samples, case studies, and work examples are available across additional sectors and disciplines. Just ask.</p>
+    <a href="contact.html" class="btn-white">Request Work Samples</a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Ready to Create Your Own Results?</h2>
+      <p>Let's talk about your communications goals and how I can help you get there.</p>
+      <a href="contact.html" class="btn-purple">Get In Touch</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Jessica Marabella Consulting</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="selected-work.html">Selected Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Jessica Marabella Consulting. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

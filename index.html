@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jessica Marabella Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6B3FA0;
+      --purple-dark: #4A2870;
+      --purple-light: #EDE7F6;
+      --purple-mid: #9B6FCA;
+      --text: #1A1A2E;
+      --text-light: #555570;
+      --gray-bg: #F7F7FB;
+      --white: #FFFFFF;
+      --border: #E0D9F0;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--purple); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 32px; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: var(--white);
+      padding: 10px 22px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--purple-dark); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      color: var(--white);
+      padding: 100px 40px 90px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 20px;
+    }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.2; max-width: 760px; margin: 0 auto 20px; }
+    .hero-sub {
+      font-family: 'Arial', sans-serif; font-size: 1.15rem; color: rgba(255,255,255,0.85);
+      max-width: 620px; margin: 0 auto 36px;
+    }
+    .btn-primary {
+      display: inline-block; background: var(--white); color: var(--purple);
+      padding: 14px 32px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 700; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .btn-outline {
+      display: inline-block; border: 2px solid var(--white); color: var(--white);
+      padding: 12px 28px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.95rem;
+      margin-left: 16px; transition: background 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+    /* SECTION BASE */
+    section { padding: 80px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Arial', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--text); margin-bottom: 14px; }
+    .section-desc { font-family: 'Arial', sans-serif; color: var(--text-light); font-size: 1rem; max-width: 620px; margin-bottom: 48px; }
+
+    /* FOCUS AREAS */
+    .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .focus-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 28px 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .focus-card:hover { box-shadow: 0 4px 20px rgba(107,63,160,0.12); transform: translateY(-3px); }
+    .focus-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .focus-card h3 { font-size: 1rem; color: var(--purple); margin-bottom: 8px; }
+    .focus-card p { font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light); line-height: 1.5; }
+
+    /* VALUE STRIP */
+    .value-strip { background: var(--purple); color: var(--white); padding: 60px 40px; text-align: center; }
+    .value-strip-inner { max-width: 900px; margin: 0 auto; }
+    .value-strip h2 { color: var(--white); margin-bottom: 14px; }
+    .value-strip p { font-family: 'Arial', sans-serif; color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 32px; }
+    .metrics { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 36px; }
+    .metric-item { text-align: center; }
+    .metric-num { font-size: 2.4rem; font-weight: 700; display: block; }
+    .metric-label { font-family: 'Arial', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ABOUT TEASER */
+    .about-teaser { background: var(--gray-bg); }
+    .about-teaser-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text h2 { margin-bottom: 18px; }
+    .about-text p { font-family: 'Arial', sans-serif; color: var(--text-light); margin-bottom: 16px; font-size: 0.97rem; }
+    .btn-purple {
+      display: inline-block; background: var(--purple); color: var(--white);
+      padding: 12px 28px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .btn-purple:hover { background: var(--purple-dark); }
+    .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+    .highlight-item {
+      background: var(--white); border-left: 4px solid var(--purple);
+      padding: 16px 20px; border-radius: 0 6px 6px 0;
+    }
+    .highlight-item strong { font-size: 0.95rem; color: var(--text); display: block; margin-bottom: 4px; }
+    .highlight-item span { font-family: 'Arial', sans-serif; font-size: 0.85rem; color: var(--text-light); }
+
+    /* SERVICES PREVIEW */
+    .services-preview { background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .service-card {
+      border: 1px solid var(--border); border-radius: 8px; padding: 28px 24px;
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 20px rgba(107,63,160,0.1); }
+    .service-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .service-card h3 { font-size: 1rem; color: var(--purple); margin-bottom: 8px; }
+    .service-card p { font-family: 'Arial', sans-serif; font-size: 0.87rem; color: var(--text-light); line-height: 1.5; }
+
+    /* CTA SECTION */
+    .cta-section { background: var(--purple-light); text-align: center; }
+    .cta-section h2 { margin-bottom: 14px; }
+    .cta-section p { font-family: 'Arial', sans-serif; color: var(--text-light); max-width: 520px; margin: 0 auto 32px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 40px 40px;
+      font-family: 'Arial', sans-serif; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .about-teaser-inner { grid-template-columns: 1fr; }
+      .metrics { gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">Jessica Marabella</div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="selected-work.html">Selected Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Work With Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Strategic Communications &amp; Marketing Consultant</div>
+    <h1>Turning Complex Ideas Into Clear, Compelling Stories That Drive Results</h1>
+    <p class="hero-sub">I help organizations articulate their value, align their teams, and move their audiences — from brand strategy to content to executive communications.</p>
+    <a href="services.html" class="btn-primary">Explore My Services</a>
+    <a href="selected-work.html" class="btn-outline">See My Work</a>
+  </section>
+
+  <!-- FOCUS AREAS -->
+  <section>
+    <div class="section-inner">
+      <div class="section-label">What I Do</div>
+      <h2>Areas of Focus</h2>
+      <p class="section-desc">I bring strategic clarity and creative execution to organizations navigating growth, change, or complexity.</p>
+      <div class="focus-grid">
+        <div class="focus-card">
+          <div class="focus-icon">🎯</div>
+          <h3>Brand &amp; Messaging Strategy</h3>
+          <p>Defining how organizations talk about themselves — with clarity, consistency, and conviction.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-icon">📣</div>
+          <h3>Content &amp; Editorial</h3>
+          <p>Long-form, thought leadership, and campaign content that earns attention and builds trust.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-icon">🤝</div>
+          <h3>Executive Communications</h3>
+          <p>Helping leaders find their voice and communicate with authority and authenticity.</p>
+        </div>
+        <div class="focus-card">
+          <div class="focus-icon">📈</div>
+          <h3>Public Relations &amp; Launch</h3>
+          <p>Strategic PR campaigns that generate coverage, build momentum, and reach the right audiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE STRIP -->
+  <div class="value-strip">
+    <div class="value-strip-inner">
+      <h2>Results That Speak for Themselves</h2>
+      <p>A track record of measurable impact across communications, content, and brand strategy engagements.</p>
+      <div class="metrics">
+        <div class="metric-item">
+          <span class="metric-num">5.5×</span>
+          <span class="metric-label">Revenue Increase</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">3×</span>
+          <span class="metric-label">Audience Growth</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">$2.29M</span>
+          <span class="metric-label">Revenue Generated</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">#1</span>
+          <span class="metric-label">Publisher Ranking</span>
+        </div>
+      </div>
+      <a href="selected-work.html" class="btn-primary">View Selected Work</a>
+    </div>
+  </div>
+
+  <!-- ABOUT TEASER -->
+  <section class="about-teaser">
+    <div class="about-teaser-inner">
+      <div class="about-text">
+        <div class="section-label">About Jessica</div>
+        <h2>Strategic Thinking. Human-Centered Communication.</h2>
+        <p>I'm a communications and marketing consultant with deep experience across publishing, nonprofit, and professional services sectors. I help organizations find the words — and the strategy — to move people.</p>
+        <p>My approach is collaborative, rigorous, and grounded in what actually works: clear thinking, honest messaging, and creative execution.</p>
+        <a href="about.html" class="btn-purple">Learn More About Me</a>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <strong>Publishing &amp; Media</strong>
+          <span>PR campaigns, author launches, and award-winning book marketing</span>
+        </div>
+        <div class="highlight-item">
+          <strong>Nonprofit &amp; Mission-Driven Orgs</strong>
+          <span>Brand strategy, donor communications, and content that converts</span>
+        </div>
+        <div class="highlight-item">
+          <strong>Professional Services</strong>
+          <span>Executive positioning, thought leadership, and messaging frameworks</span>
+        </div>
+        <div class="highlight-item">
+          <strong>Startups &amp; Growth Stage</strong>
+          <span>Go-to-market strategy and communications infrastructure built to scale</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="services-preview">
+    <div class="section-inner">
+      <div class="section-label">Services</div>
+      <h2>How I Can Help</h2>
+      <p class="section-desc">Engagements are tailored to your needs — from focused strategy sprints to ongoing advisory partnerships.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🗺️</div>
+          <h3>Brand &amp; Messaging Strategy</h3>
+          <p>Positioning frameworks, messaging architecture, and voice guidelines that give your team a north star.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✍️</div>
+          <h3>Content Strategy &amp; Creation</h3>
+          <p>Editorial planning, thought leadership, and high-quality content that builds authority over time.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📡</div>
+          <h3>Public Relations</h3>
+          <p>Strategic media relations, launch campaigns, and earned coverage that extends your reach.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎤</div>
+          <h3>Executive Communications</h3>
+          <p>Speeches, op-eds, presentations, and messaging support for leaders who want to communicate with impact.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 40px;">
+        <a href="services.html" class="btn-purple">See Full Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Ready to Start a Conversation?</h2>
+      <p>Whether you have a defined project in mind or are still figuring out what you need, I'd love to connect.</p>
+      <a href="contact.html" class="btn-purple">Get In Touch</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Jessica Marabella Consulting</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="selected-work.html">Selected Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Jessica Marabella Consulting. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

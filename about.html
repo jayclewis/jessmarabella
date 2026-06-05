@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Jessica Marabella Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6B3FA0;
+      --purple-dark: #4A2870;
+      --purple-light: #EDE7F6;
+      --purple-mid: #9B6FCA;
+      --text: #1A1A2E;
+      --text-light: #555570;
+      --gray-bg: #F7F7FB;
+      --white: #FFFFFF;
+      --border: #E0D9F0;
+    }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--purple); }
+    .nav-links { display: flex; gap: 32px; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); font-weight: 600; }
+    .nav-cta {
+      background: var(--purple); color: var(--white); padding: 10px 22px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-mid) 100%);
+      color: var(--white); padding: 80px 40px 70px; text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 16px;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); max-width: 680px; margin: 0 auto 16px; line-height: 1.2; }
+    .hero-sub { font-family: 'Arial', sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto; }
+
+    section { padding: 72px 40px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Arial', sans-serif; font-size: 0.78rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 10px;
+    }
+    h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); color: var(--text); margin-bottom: 14px; }
+
+    /* BIO */
+    .bio-section { background: var(--white); }
+    .bio-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 56px; align-items: start; }
+    .bio-photo-placeholder {
+      background: var(--purple-light); border-radius: 10px;
+      aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+      color: var(--purple); font-family: 'Arial', sans-serif; font-size: 0.85rem; text-align: center;
+      padding: 20px;
+    }
+    .bio-text p { font-family: 'Arial', sans-serif; color: var(--text-light); font-size: 0.97rem; line-height: 1.7; margin-bottom: 16px; }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .bio-text strong { color: var(--text); }
+
+    /* METRICS STRIP */
+    .metrics-strip { background: var(--purple); color: var(--white); padding: 52px 40px; text-align: center; }
+    .metrics-inner { max-width: 700px; margin: 0 auto; }
+    .metrics-strip h2 { color: var(--white); margin-bottom: 8px; }
+    .metrics-strip p { font-family: 'Arial', sans-serif; color: rgba(255,255,255,0.8); margin-bottom: 36px; }
+    .metrics-row { display: flex; justify-content: center; gap: 64px; flex-wrap: wrap; }
+    .metric-item { text-align: center; }
+    .metric-num { font-size: 2.6rem; font-weight: 700; display: block; }
+    .metric-label { font-family: 'Arial', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* CAREER HIGHLIGHTS */
+    .highlights-section { background: var(--gray-bg); }
+    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .highlight-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .highlight-icon {
+      width: 40px; height: 40px; background: var(--purple-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .highlight-content h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 5px; }
+    .highlight-content p { font-family: 'Arial', sans-serif; font-size: 0.86rem; color: var(--text-light); line-height: 1.5; }
+
+    /* COLLABORATION */
+    .collab-section { background: var(--white); }
+    .collab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .collab-card {
+      background: var(--gray-bg); border-radius: 8px; padding: 24px 22px;
+      border: 1px solid var(--border);
+    }
+    .collab-card h4 { font-size: 0.97rem; color: var(--purple); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .collab-card p { font-family: 'Arial', sans-serif; font-size: 0.88rem; color: var(--text-light); line-height: 1.55; }
+
+    /* PERSONAL NOTE */
+    .personal-note { background: var(--gray-bg); }
+    .personal-note-box {
+      max-width: 680px; margin: 0 auto; text-align: center;
+    }
+    .personal-note-box .quote-mark { font-size: 4rem; color: var(--purple); line-height: 0.8; margin-bottom: 8px; display: block; }
+    .personal-note-box blockquote {
+      font-size: 1.15rem; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 20px;
+    }
+    .personal-note-box p { font-family: 'Arial', sans-serif; font-size: 0.9rem; color: var(--text-light); }
+
+    /* CTA */
+    .cta-section { background: var(--purple-light); text-align: center; }
+    .cta-section h2 { margin-bottom: 12px; }
+    .cta-section p { font-family: 'Arial', sans-serif; color: var(--text-light); max-width: 500px; margin: 0 auto 28px; }
+    .btn-purple {
+      display: inline-block; background: var(--purple); color: var(--white);
+      padding: 13px 28px; border-radius: 4px;
+      font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.92rem;
+    }
+    .btn-purple:hover { background: var(--purple-dark); }
+
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.75);
+      padding: 40px; font-family: 'Arial', sans-serif; font-size: 0.85rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 1rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      section { padding: 52px 20px; }
+      .bio-inner { grid-template-columns: 1fr; }
+      .bio-photo-placeholder { aspect-ratio: 16/9; }
+      .metrics-row { gap: 36px; }
+      .collab-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">Jessica Marabella</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="selected-work.html">Selected Work</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Work With Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">About Jessica</div>
+    <h1>Strategic Thinking. Human-Centered Communication.</h1>
+    <p class="hero-sub">A consultant who combines creative instinct with analytical rigor to help organizations communicate with clarity and impact.</p>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio-section">
+    <div class="bio-inner">
+      <div class="bio-photo-placeholder">
+        📸<br /><br />Photo coming soon
+      </div>
+      <div class="bio-text">
+        <div class="section-label">My Story</div>
+        <h2>From Storyteller to Strategic Partner</h2>
+        <p>I'm Jessica Marabella — a communications and marketing consultant with deep experience across publishing, nonprofit, and professional services. I help organizations find the words, and the strategy, to move people.</p>
+        <p>My career has been built at the intersection of craft and strategy. I've spent years developing messaging frameworks, running PR campaigns, building content engines, and helping leaders communicate with authenticity. The through-line in all of it: <strong>clear thinking leads to clear communication, and clear communication drives results.</strong></p>
+        <p>I'm drawn to organizations at moments of growth or transition — when there's something important to say and the stakes are high. I work best when there's a real challenge to solve, and I'm most satisfied when the work makes a tangible difference for the people and organizations I partner with.</p>
+        <p>I work collaboratively and rigorously. I ask good questions. I'm honest when something isn't working. And I stay focused on outcomes, not just deliverables.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS STRIP -->
+  <div class="metrics-strip">
+    <div class="metrics-inner">
+      <h2>The Work, in Numbers</h2>
+      <p>Outcomes from engagements across revenue, audience, and visibility.</p>
+      <div class="metrics-row">
+        <div class="metric-item">
+          <span class="metric-num">5.5×</span>
+          <span class="metric-label">Revenue Increase</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">3×</span>
+          <span class="metric-label">Audience Growth</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">$2.29M</span>
+          <span class="metric-label">Revenue Generated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAREER HIGHLIGHTS -->
+  <section class="highlights-section">
+    <div class="section-inner">
+      <div class="section-label">Experience</div>
+      <h2>Career Highlights</h2>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">📚</div>
+          <div class="highlight-content">
+            <h4>Publishing &amp; Book PR</h4>
+            <p>Led PR campaigns for authors and independent publishers, securing top-tier placements and driving 6-award wins and 173K-subscriber audiences.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏛️</div>
+          <div class="highlight-content">
+            <h4>Nonprofit Communications</h4>
+            <p>Developed brand strategy and content programs for mission-driven organizations, including a $2.29M fundraising campaign and 3× audience growth initiative.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-content">
+            <h4>Brand &amp; Messaging Strategy</h4>
+            <p>Built messaging frameworks for professional services clients that directly contributed to 5.5× revenue growth and significantly improved prospect conversion.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">✍️</div>
+          <div class="highlight-content">
+            <h4>Content &amp; Editorial Leadership</h4>
+            <p>Designed editorial strategies and produced high-quality content across email, long-form, and web — building sustainable content operations for growing organizations.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🎤</div>
+          <div class="highlight-content">
+            <h4>Executive Communications</h4>
+            <p>Supported senior leaders with messaging, speeches, op-eds, and thought leadership content that strengthened their public profiles and organizational credibility.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📡</div>
+          <div class="highlight-content">
+            <h4>Media Relations</h4>
+            <p>Managed earned media campaigns across print, digital, and broadcast, with placements in nationally recognized outlets and industry-specific publications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLABORATION APPROACH -->
+  <section class="collab-section">
+    <div class="section-inner">
+      <div class="section-label">How I Work</div>
+      <h2>My Collaboration Approach</h2>
+      <div style="margin-bottom: 32px;">
+        <p style="font-family: 'Arial', sans-serif; color: var(--text-light); max-width: 620px;">I believe the best consulting relationships are built on trust, transparency, and shared commitment to the work. Here's what you can expect from me.</p>
+      </div>
+      <div class="collab-grid">
+        <div class="collab-card">
+          <h4>🔍 Strategic First</h4>
+          <p>I don't start writing until the strategy is clear. Every engagement begins with understanding your goals, audiences, and context — so execution is grounded in purpose, not just activity.</p>
+        </div>
+        <div class="collab-card">
+          <h4>💬 Honest Communication</h4>
+          <p>I'll tell you when something isn't working. Constructive honesty — delivered with care — is more valuable than polished agreement. I'm a thinking partner, not just a service provider.</p>
+        </div>
+        <div class="collab-card">
+          <h4>🤝 Genuinely Collaborative</h4>
+          <p>I do my best work alongside engaged clients. I bring the expertise; you bring the organizational knowledge. Together we build something neither of us could produce alone.</p>
+        </div>
+        <div class="collab-card">
+          <h4>✅ Outcome-Oriented</h4>
+          <p>The measure of good work is impact, not effort. I stay focused on what you're actually trying to achieve — and I hold that standard throughout, not just at the final delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL NOTE -->
+  <section class="personal-note">
+    <div class="section-inner">
+      <div class="personal-note-box">
+        <span class="quote-mark">"</span>
+        <blockquote>
+          The organizations I find most rewarding to work with are the ones that care deeply — about their mission, their audiences, and doing the work well. If that sounds like you, I'd love to connect.
+        </blockquote>
+        <p>— Jessica Marabella</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>Let's Work Together</h2>
+      <p>Ready to start a conversation about your communications goals? I'd love to hear what you're working on.</p>
+      <a href="contact.html" class="btn-purple">Get In Touch</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Jessica Marabella Consulting</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="selected-work.html">Selected Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Jessica Marabella Consulting. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
