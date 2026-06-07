@@ -115,6 +115,11 @@
       font-family: 'Arial', sans-serif; font-weight: 600; font-size: 0.9rem;
       transition: background 0.2s;
     }
+    .bio-photo-placeholder {
+      background: var(--purple-light); border-radius: 10px;
+      aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
     .btn-purple:hover { background: var(--purple-dark); }
     .about-highlights { display: flex; flex-direction: column; gap: 16px; }
     .highlight-item {
@@ -181,7 +186,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Content Marketing Strategy Consulting</div>
-    <h1>Consulting That Turns <span style="font-weight:300 !important"><em>Complexity</em></span> Into Clarity</h1>
+    <h1>Consulting That Turns <span style="font-weight:300 !important"><em>Complexity</em></span> Into <span style="font-weight:300 !important"><em>Clarity</em></span></h1>
     <p class="hero-sub">I help craft narratives for B2B, technology, health, and mission-driven brands that move markets.</p>
     <a href="contact.html" class="btn-primary">Work With Me</a>
     <a href="selected-work.html" class="btn-outline">See My Work</a>
@@ -189,15 +194,20 @@
 
   <!-- ABOUT TEASER -->
   <section class="about-teaser">
+    <div class="section-inner">
+      <div class="section-label">About Jessica</div>
+      <h2>Strategic Thinking. Human-Centered Communication.</h2>
+      <p>&nbsp;</p>
+    </div>
     <div class="about-teaser-inner">
-      <div class="about-text">
-        <div class="section-label">About Jessica</div>
-        <h2>Strategic Thinking. Human-Centered Communication.</h2>
-        <p>I'm a communications and marketing consultant with deep experience across publishing, nonprofit, and professional services sectors. I help organizations find the words — and the strategy — to move people.</p>
-        <p>My approach is collaborative, rigorous, and grounded in what actually works: clear thinking, honest messaging, and creative execution.</p>
-        <a href="about.html" class="btn-purple">Learn More About Me</a>
+      <div class="bio-photo-placeholder">
+        <img src="/images/Jess_3.png" width="480" alt="Jess Marabella">
       </div>
       <div class="about-highlights">
+        <div class="about-text">
+          <p>I'm a communications and marketing consultant with deep experience across publishing, nonprofit, and professional services sectors. I help organizations find the words, and the strategy, to move people.</p>
+          <p>My approach is collaborative, rigorous, and grounded in what actually works: clear thinking, honest messaging, and creative execution.</p>
+        </div>
         <div class="highlight-item">
           <strong>Publishing &amp; Media</strong>
           <span>PR campaigns, author launches, and award-winning book marketing</span>
@@ -214,6 +224,7 @@
           <strong>Startups &amp; Growth Stage</strong>
           <span>Go-to-market strategy and communications infrastructure built to scale</span>
         </div>
+        <div style="padding-top: 20px;"><a href="about.html" class="btn-purple">Learn More About Jessica</a></div>     
       </div>
     </div>
   </section>
